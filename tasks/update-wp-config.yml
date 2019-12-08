@@ -12,25 +12,25 @@
 - name: "Set database name"
   lineinfile:
     path: "{{ wpdir }}/wp-config.php"
-    regexp: "^define\( 'DB_NAME',"
+    regexp: "^define\\( 'DB_NAME',"
     line: "define( 'DB_NAME', 'wordpress' );"
     
 - name: "Set database user"
   lineinfile:
     path: "{{ wpdir }}/wp-config.php"
-    regexp: "^define\( 'DB_USER',"
+    regexp: "^define\\( 'DB_USER',"
     line: "define( 'DB_USER', 'wordpress' );"
 
 - name: "Set database user password"
   lineinfile:
     path: "{{ wpdir }}/wp-config.php"
-    regexp: "^define\( 'DB_PASSWORD',"
+    regexp: "^define\\( 'DB_PASSWORD',"
     line: "define( 'DB_PASSWORD', '{{ pwd_wordpress_db }}' );"
 
 - name: "Set security keys"
   lineinfile:
     path: "{{ wpdir }}/wp-config.php"
-    regexp: "^define\( '{{ item.name }}',"
+    regexp: "^define\\( '{{ item.name }}',"
     line: "define( '{{ item.name }}', '{{ lookup(\"password\", \"{{ pwddir }}/salt-{{ item.name }} chars=ascii_letters,digits,hexdigits\") }}' );"
   loop:
     - { name: AUTH_KEY }
