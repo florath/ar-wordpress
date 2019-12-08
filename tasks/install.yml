@@ -1,0 +1,17 @@
+---
+
+# Detailed installation as described
+# https://wordpress.org/support/article/how-to-install-wordpress/
+
+# Step 1: Download and Extract
+
+- name: "Download latest version of wordpress"
+  get_url:
+    url: https://wordpress.org/latest.tar.gz
+    dest: /tmp/wordpress.tar.gz
+    mode: '0644'
+
+- name: "Extract wordpress to /usr/local/share"
+  shell: tar -x -C /usr/local/share -f /tmp/wordpress.tar.gz
+  args:
+    creates: /usr/local/share/wordpress/wp-login.php

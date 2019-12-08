@@ -16,4 +16,3 @@
 - name: "Install Apache"
   apt:
     name: apache2
-

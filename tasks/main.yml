@@ -1,3 +1,4 @@
 ---
 
 - include: preconditions.yml
+- include: install.yml
