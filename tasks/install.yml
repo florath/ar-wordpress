@@ -8,6 +8,7 @@
 - name: "Create download directory"
   file:
     path: /usr/local/download
+    state: directory
     owner: root
     group: root
     mode: '0755'
