@@ -4,7 +4,7 @@
 
 - name: "Set password dir"
   set_fact:
-    pwddir: "{{ ansible_env.HOME }}/passwords"
+    pwddir: "/tmp/wp-passwords"
 
 - name: "Create directory where generated passwords are stored"
   file:
@@ -12,4 +12,4 @@
     state: directory
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
-    mode: "0600"
+    mode: "0666"
