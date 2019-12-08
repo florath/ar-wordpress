@@ -30,7 +30,7 @@
   lineinfile:
     path: "{{ wpdir }}/wp-config.php"
     regexp: "^define( '{{ item.name }}',"
-    line: "define( '{{ item.name }}', '{{ lookup(\'password\', \"{{ pwddir }}/salt-{{ item.name }} chars=ascii_letters,digits,hexdigits\") }}' );"
+    line: "define( '{{ item.name }}', '{{ lookup(\"password\", \"{{ pwddir }}/salt-{{ item.name }} chars=ascii_letters,digits,hexdigits\") }}' );"
   loop:
     - { name: AUTH_KEY }
     - { name: SECURE_AUTH_KEY }
