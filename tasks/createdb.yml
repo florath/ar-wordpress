@@ -1,0 +1,20 @@
+---
+
+- name: "Create wordpress user"
+  user:
+    name: wordpress
+    create_home: no
+    password_lock: yes
+    shell: /usr/sbin/nologin
+    
+- name: "Check if database already exists"
+  shell: mysql wordpress
+  ignore_errors: yes
+  register: wordpress_db_exists
+
+- name: "Create database and set permissions"
+  shell: |
+    mysql --execute "CREATE DATABASE wordpress"
+    mysql --execute 'GRANT ALL PRIVILEGES ON databasename.* TO "wordpress"@"localhost" IDENTIFIED BY "password"'
+    mysql --execute "FLUSH PRIVILEGES"
+  when: wordpress_db_exists.rc != 0

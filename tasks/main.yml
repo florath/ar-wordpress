@@ -2,3 +2,5 @@
 
 - include: preconditions.yml
 - include: install.yml
+- include: createdb.yml
+

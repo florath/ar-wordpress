@@ -5,14 +5,21 @@
 
 # Step 1: Download and Extract
 
+- name: "Create download directory"
+  file:
+    path: /usr/local/download
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: "Download latest version of wordpress"
   get_url:
     url: https://wordpress.org/latest.tar.gz
-    dest: /tmp/wordpress.tar.gz
+    dest: /usr/local/download/wordpress.tar.gz
     mode: '0644'
 
 - name: "Extract wordpress to /usr/local/share"
   unarchive:
-    src: /tmp/wordpress.tar.gz
+    src: /usr/local/download/wordpress.tar.gz
     dest: /usr/local/share
     remote_src: yes
