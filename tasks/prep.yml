@@ -5,3 +5,7 @@
 - name: "Set password dir"
   set_fact:
     pwddir: "passwords"
+
+- name: "Set Wordpress main dir"
+  set_fact:
+    wpdir: "/usr/local/share/wordpress"

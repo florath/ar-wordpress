@@ -15,11 +15,7 @@
 
 - name: "Generate / Get wordpress DB password"
   set_fact:
-    pwd_wordpress_db: "{{ lookup('password', \"{{ pwddir }}/wordpress-db chars=ascii_letters,digits,hexdigits,punctuation\") }}"
-
-- name: "Print wordpress DB password (DEBUG)"
-  debug:
-    msg: "{{ pwd_wordpress_db }}"
+    pwd_wordpress_db: "{{ lookup('password', \"{{ pwddir }}/wordpress-db chars=ascii_letters,digits,hexdigits\") }}"
 
 - name: "Create database and set permissions"
   shell: |

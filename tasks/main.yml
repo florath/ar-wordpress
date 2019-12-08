@@ -4,4 +4,5 @@
 - include: preconditions.yml
 - include: install.yml
 - include: createdb.yml
-
+- include: update-wp-config.yml
+  
