@@ -1,0 +1,19 @@
+---
+
+# Preconditions / requirements as documented in
+# https://wordpress.org/support/article/before-you-install/
+# and
+# https://wordpress.org/about/requirements/
+
+- name: "Install PHP 7.3 or greater"
+  apt:
+    name: php7.3
+
+- name: "Install MariaDB 10.1 or greater"
+  apt:
+    name: mariadb-server
+
+- name: "Install Apache"
+  apt:
+    name: apache2
+
