@@ -13,3 +13,7 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     mode: "0777"
+
+- name: "Password dir"
+  debug:
+    msg: "{{ pwddir }}"
