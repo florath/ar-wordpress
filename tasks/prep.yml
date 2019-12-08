@@ -4,7 +4,7 @@
 
 - name: "Set password dir"
   set_fact:
-    pwddir: "/home/{{ ansible_user_id }}/passwords"
+    pwddir: "{{ ansible_env.HOME }}/passwords"
 
 - name: "Create directory where generated passwords are stored"
   file:
