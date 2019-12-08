@@ -12,6 +12,7 @@
     mode: '0644'
 
 - name: "Extract wordpress to /usr/local/share"
-  shell: tar -x -C /usr/local/share -f /tmp/wordpress.tar.gz
-  args:
-    creates: /usr/local/share/wordpress/wp-login.php
+  unarchive:
+    src: /tmp/wordpress.tar.gz
+    dest: /usr/local/share
+    remote_src: yes
