@@ -5,7 +5,8 @@
 
 - name: "Copy the example file"
   copy:
-    remote_src: "{{ wpdir }}/wp-config-sample.php"
+    src: "{{ wpdir }}/wp-config-sample.php"
+    remote_src: yes
     dest: "{{ wpdir }}/wp-config.php"
 
 - name: "Set database name"
