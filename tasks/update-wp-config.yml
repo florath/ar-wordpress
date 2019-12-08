@@ -1,0 +1,42 @@
+---
+
+# Updates the wp-config.php as descibed
+# https://wordpress.org/support/article/editing-wp-config-php/
+
+- name: "Copy the example file"
+  copy:
+    src: "{{ wpdir }}/wp-config-sample.php"
+    dest: "{{ wpdir }}/wp-config.php"
+
+- name: "Set database name"
+  lineinfile:
+    path: "{{ wpdir }}/wp-config.php"
+    regexp: "^define( 'DB_NAME', '"
+    line: "define( 'DB_NAME', 'wordpress' );"
+    
+- name: "Set database user"
+  lineinfile:
+    path: "{{ wpdir }}/wp-config.php"
+    regexp: "^define( 'DB_USER', '"
+    line: "define( 'DB_USER', 'wordpress' );"
+
+- name: "Set database user password"
+  lineinfile:
+    path: "{{ wpdir }}/wp-config.php"
+    regexp: "^define( 'DB_PASSWORD', '"
+    line: "define( 'DB_PASSWORD', '{{ pwd_wordpress_db }}' );"
+
+- name: "Set security keys"
+  lineinfile:
+    path: "{{ wpdir }}/wp-config.php"
+    regexp: "^define( '{{ item.name }}',"
+    line: "define( '{{ item.name }}', '{{ lookup(\'password\', \"{{ pwddir }}/salt-{{ item.name }} chars=ascii_letters,digits,hexdigits\") }}' );"
+  loop:
+    - { name: AUTH_KEY }
+    - { name: SECURE_AUTH_KEY }
+    - { name: LOGGED_IN_KEY }
+    - { name: NONCE_KEY }
+    - { name: AUTH_SALT }
+    - { name: SECURE_AUTH_SALT }
+    - { name: LOGGED_IN_SALT }
+    - { name: NONCE_SALT }
