@@ -6,6 +6,7 @@
     create_home: no
     password_lock: yes
     shell: /usr/sbin/nologin
+    home: /usr/local/share/wordpress
     
 - name: "Check if database already exists"
   shell: mysql wordpress
@@ -15,6 +16,6 @@
 - name: "Create database and set permissions"
   shell: |
     mysql --execute "CREATE DATABASE wordpress"
-    mysql --execute 'GRANT ALL PRIVILEGES ON databasename.* TO "wordpress"@"localhost" IDENTIFIED BY "password"'
+    mysql --execute "GRANT ALL PRIVILEGES ON databasename.* TO wordpress@localhost IDENTIFIED BY \"{{ lookup('db_wordpress', '/root/wordpress-passwords chars=ascii_letters,digits,hexdigits,punctuation') }}\""
     mysql --execute "FLUSH PRIVILEGES"
   when: wordpress_db_exists.rc != 0
