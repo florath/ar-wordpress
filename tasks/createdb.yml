@@ -9,7 +9,7 @@
     home: /usr/local/share/wordpress
     
 - name: "Check if database already exists"
-  shell: mysql wordpress
+  shell: mysql wordpress --execute "EXIT"
   ignore_errors: yes
   register: wordpress_db_exists
 
