@@ -16,6 +16,6 @@
 - name: "Create database and set permissions"
   shell: |
     mysql --execute "CREATE DATABASE wordpress"
-    mysql --execute "GRANT ALL PRIVILEGES ON databasename.* TO wordpress@localhost IDENTIFIED BY \"{{ lookup('password', '/root/pwd-wordpress-db chars=ascii_letters,digits,hexdigits,punctuation') }}\""
+    mysql --execute "GRANT ALL PRIVILEGES ON databasename.* TO wordpress@localhost IDENTIFIED BY \"{{ lookup('password', '{{ pwddir}}/wordpress-db chars=ascii_letters,digits,hexdigits,punctuation') }}\""
     mysql --execute "FLUSH PRIVILEGES"
   when: wordpress_db_exists.rc != 0

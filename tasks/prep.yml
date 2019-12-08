@@ -1,0 +1,15 @@
+---
+
+# Any kind of preparation needed to use this role
+
+- name: "Set password dir"
+  set_fact:
+    pwddir: "/home/{{ ansible_user_id }}/passwords"
+
+- name: "Create directory where generated passwords are stored"
+  file:
+    path: "{{ pwddir }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: "0600"
